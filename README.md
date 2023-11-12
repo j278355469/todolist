@@ -29,3 +29,7 @@
 ### 建立網頁功能
 
 - python manage.py startapp user
+
+### 註冊功能
+- settings
+    - INSTLL
