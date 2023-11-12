@@ -6,6 +6,17 @@ from django.contrib.auth import login, logout, authenticate
 # Create your views here.
 
 
+def user_logout(request):
+    logout(request)
+    return redirect("login")
+
+
+def profile(request):
+    user = request.user
+
+    return render(request, "user/profile.html", {"user": user})
+
+
 def user_login(request):
     message = ""
     if request.method == "POST":
@@ -16,15 +27,16 @@ def user_login(request):
             password = request.POST["password"]
             user = User.objects.filter(username=username)
             if not user:
-                message = "無此帳號"
+                message = "無此帳號!"
             else:
                 user = authenticate(
                     request, username=username, password=password)
                 if not user:
-                    message = "密碼錯誤"
+                    message = "密碼錯誤!"
                 else:
                     login(request, user)
-                    message = "登入成功"
+                    message = "登入成功!"
+                    return redirect("profile")
 
         print(user)
 
