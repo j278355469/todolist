@@ -13,3 +13,8 @@ def todo(request):
         todos = Todo.objects.filter(user=user)
 
     return render(request, "todo/todo.html", {"todos": todos})
+
+
+def viewtodo(request, id):
+    todo = Todo.objects.get(id=id)
+    return render(request, 'todo/viewtodo.html', {"todo": todo})
