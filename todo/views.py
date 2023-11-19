@@ -1,10 +1,20 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
+from django.contrib.auth.decorators import login_required
 from .models import Todo
 from .forms import TodoForm
 from datetime import datetime
 # Create your views here.
 
 
+@login_required
+def deletetodo(request, id):
+    todo = Todo.objects.get(id=id)
+    todo.delete()
+
+    return redirect("todo")
+
+
+@login_required
 def createtodo(request):
     form = TodoForm()
     message = ""
@@ -29,6 +39,7 @@ def todo(request):
     return render(request, "todo/todo.html", {"todos": todos})
 
 
+@login_required
 def viewtodo(request, id):
 
     todo = Todo.objects.get(id=id)
