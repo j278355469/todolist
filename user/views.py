@@ -36,7 +36,7 @@ def user_login(request):
                 else:
                     login(request, user)
                     message = "登入成功!"
-                    return redirect("profile")
+                    return redirect("todo")
 
         print(user)
 
@@ -64,7 +64,7 @@ def register(request):
                                                 password=password1)
                 user.save()
                 message = "註冊成功"
-                return redirect("login")
+                return redirect("profile")
 
     form = UserCreationForm()
     return render(request, "user/register.html", {"form": form, "message": message})
