@@ -11,5 +11,17 @@
 <p>
     {{todo.text}}
 </p>
+{% if todo.completed %}
+<p>完成時間:{{todo.date_completed}}</p>
+
+{% endif %}
+
+
 <a href="{%url 'todo' %}"><u>返回</u></a>
+<form action="" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">更新</button>
+</form>
+{{message}}
 {% endblock %}
