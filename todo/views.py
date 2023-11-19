@@ -6,6 +6,11 @@ from datetime import datetime
 # Create your views here.
 
 
+def completed(request):
+    todos = Todo.objects.all()
+    return render(request, "todo/completed.html", {"todos": todos})
+
+
 @login_required
 def deletetodo(request, id):
     todo = Todo.objects.get(id=id)
