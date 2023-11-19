@@ -58,7 +58,9 @@
         {% if user.is_authenticated %}
 
         <span class="username">
-            <a href="{% url 'profile' %}">使用者:{{user.username}}</a></span><a href="{% url 'logout' %}">登出</a>
+            <a href="{% url 'profile' %}">使用者:{{user.username}}</a></span>
+        <a href="{% url 'logout' %}">登出</a>
+        <a href="{% url 'createtodo' %}">建立事項</a>
         {% else %}
         <a href="{% url 'login' %}">登入</a>
         <a href="{% url 'register' %}">註冊</a>
